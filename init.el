@@ -223,16 +223,18 @@
   :doc "A generic completion mechanism"
   :ensure t
   :config
-  (ivy-mode t)
-  (setq ivy-use-virtual-buffers t
-        ;; Display index and count both.
-        ivy-count-format "(%d/%d)"
-        ;; By default, all ivy prompts start with `^'. Disable that.
-        ivy-initial-inputs-alist nil)
+  (progn
+    (ivy-mode t)
+    (setq ivy-use-virtual-buffers t
+          ;; Display index and count both.
+          ivy-count-format "(%d/%d)"))
 
   :bind (("C-x b" . ivy-switch-buffer)
          ("C-x B" . ivy-switch-buffer-other-window))
   :delight)
+
+;; By default, all ivy prompts start with `^'. Disable that.
+(setq ivy-initial-inputs-alist nil)
 
 (use-package ivy-rich
   :doc "Have additional information in empty space of ivy buffers."
@@ -311,6 +313,8 @@
 
 
 ;; ───────────────────────────────────── Code editing ─────────────────────────────────────
+
+
 
 (use-package company
   :doc "COMplete ANYthing"
@@ -504,6 +508,11 @@
 (use-package indium
   :ensure t
   :doc "The complete JS mode for Emacs")
+
+(use-package golden-ratio
+  :ensure t
+  :config
+  (golden-ratio-mode nil))
 
 (global-set-key
  (kbd "M-<return>") 'other-window)
