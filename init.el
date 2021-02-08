@@ -111,7 +111,18 @@
 
 ;; for rust - this handles the lsp related stuff by default
 (use-package rustic
-  :ensure t)
+  :ensure t
+  :bind
+  (:map rustic-mode-map
+	  ("M-?" . lsp-find-references)
+	  ("C-c C-c a" . lsp-execute-code-action)
+	  ("C-c C-c s" . lsp-rust-analyzer-status))
+  :config
+  ;; uncomment for less flashiness
+  ;; (setq lsp-eldoc-hook nil)
+  ;; (setq lsp-enable-symbol-highlighting nil)
+  ;; (setq lsp-signature-auto-activate nil)
+  (setq rustic-format-on-save t))
 
 ;; ─────────────────────────── LSP MODE  ──────────────────────────
 
